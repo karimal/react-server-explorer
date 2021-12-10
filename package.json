@@ -1,0 +1,42 @@
+{
+  "name": "react-server-explorer",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "prod": "parcel build src/index.html",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "parcel": "^2.0.1",
+    "postcss": "^8.4.4",
+    "prettier": "^2.5.1",
+    "prop-types": "^15.7.2",
+    "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "http-server": "^14.0.0",
+    "lodash.orderby": "^4.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2"
+  },
+  "@parcel/bundler-default": {
+    "minBundles": 1,
+    "minBundleSize": 3000,
+    "maxParallelRequests": 20
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
