@@ -8,7 +8,8 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "preprod": "rm -rf dist/*",
     "prod": "npm run preprod && parcel build ./src/index.html --public-url ./",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,9 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@parcel/transformer-sass": "^2.0.1",
+    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",

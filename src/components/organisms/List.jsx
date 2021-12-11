@@ -12,7 +12,7 @@ const List = () => {
   const [message, setWarningMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const token = sessionStorage.getItem("__tok");
   /**
    * If user isn't authenticated > redirect to login page
