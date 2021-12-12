@@ -18,6 +18,7 @@ describe("<SortDDL />", () => {
   test("DDL value should change when user selects", () => {
     render(<SortDDL id="sort-ddl" />);
     const sortElement = screen.getByTestId("sort-ddl");
+
     expect(sortElement.value).toBe("");
     fireEvent.change(sortElement, { target: { value: "name-asc" } });
     expect(sortElement.value).toBe("name-asc");

@@ -8,7 +8,8 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "preprod": "rm -rf dist/*",
     "prod": "npm run preprod && parcel build ./src/index.html --public-url ./",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
   "author": "",
@@ -27,11 +28,13 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "jest": "^27.4.4",
+    "msw": "^0.36.3",
     "parcel": "^2.0.1",
     "postcss": "^8.4.4",
     "prettier": "^2.5.1",
     "prop-types": "^15.7.2",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
     "http-server": "^14.0.0",

@@ -16,7 +16,7 @@ const Login = () => {
   /**
    * If user is authenticated already > redirect to servers list home page
    */
-  useEffect(async () => {
+  useEffect(() => {
     if (token) {
       navigate("/");
     }
@@ -60,7 +60,10 @@ const Login = () => {
   };
 
   return (
-    <section className="h-screen mx-auto flex items-center justify-center bg-white sm:bg-gray-100">
+    <section
+      className="h-screen mx-auto flex items-center justify-center bg-white sm:bg-gray-100"
+      data-testid="login"
+    >
       <form
         className="bg-white max-w-md w-full p-6 sm:p-10 -mt-52 rounded sm:shadow"
         onSubmit={submit}
@@ -84,7 +87,10 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className="md:flex md:items-center">
-          <Submit disabled name={isLoading ? "loading.." : "Log in"} />
+          <Submit
+            disabled={isLoading ? "disabled" : null}
+            name={isLoading ? "loading.." : "Log In"}
+          />
         </div>
       </form>
     </section>

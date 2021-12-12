@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import _orderBy from "lodash.orderby";
 import Server from "../atoms/Server";
@@ -18,41 +18,44 @@ const List = () => {
    * If user isn't authenticated > redirect to login page
    * Otherwise load servers list
    */
+
+  const fetchServers = useCallback(async () => {
+    const url = "https://playground.nordsec.com/v1/servers";
+    const response = await fetch(`${url}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .catch(() => {
+        setWarningMessage("Something wrong happened!");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+
+    const json = await response.json();
+
+    if (response.status === 200) {
+      setWarningMessage("");
+      setServers(json);
+    } else {
+      setWarningMessage("Something wrong happened!");
+    }
+  }, []);
+
   useEffect(async () => {
     if (!token) {
       navigate("/login");
     } else {
-      const url = "https://playground.nordsec.com/v1/servers";
-      setIsLoading(true);
-
-      const response = await fetch(`${url}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-      })
-        .catch(() => {
-          setWarningMessage("Something wrong happened!");
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-
-      const json = await response.json();
-
-      if (response.status === 200) {
-        setWarningMessage("");
-        setServers(json);
-      } else {
-        setWarningMessage("Something wrong happened!");
-      }
+      await fetchServers();
     }
   }, []);
 
   const constructServers = () => {
     return servers.map((server, index) => {
-      return <Server key={index} server={server} />;
+      return <Server server={server} key={index} />;
     });
   };
 
@@ -68,7 +71,10 @@ const List = () => {
   };
 
   return (
-    <section className="bg-white h-screen w-full rounded-lg shadow-lg pt-4">
+    <section
+      className="bg-white h-screen w-full rounded-lg shadow-lg pt-4"
+      data-testid="list"
+    >
       <div className="flex justify-end px-6">
         <SortDDL
           value={sortingKey}
@@ -84,7 +90,7 @@ const List = () => {
       </div>
 
       <div className="w-full bg-white rounded-lg mb-4">
-        <ul className="divide-y-2 divide-gray-100">
+        <ul data-testid="servers-list" className="divide-y-2 divide-gray-100">
           <li className="flex p-2 px-6 font-bold text-neutral-700 justify-between">
             <span className="flex">
               <span className="flex items-center">
