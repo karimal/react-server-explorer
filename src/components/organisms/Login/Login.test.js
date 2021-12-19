@@ -6,7 +6,7 @@ import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router";
 
-import Login from "../../components/organisms/Login";
+import Login from "./Login";
 
 const mockedNavigate = jest.fn();
 

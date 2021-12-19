@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import Warning from "../../components/atoms/Warning";
+import Warning from "./Warning";
 
 describe("<Warning />", () => {
   test("Warning renders with the right value", () => {

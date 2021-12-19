@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Input from "../../components/atoms/Input";
+import Input from "./Input";
 
 describe("<Input />", () => {
   test("Text input should render", () => {

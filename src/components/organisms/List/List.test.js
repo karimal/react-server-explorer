@@ -4,8 +4,8 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 
-import List from "../../components/organisms/List";
-import data from "../../data/list";
+import List from "./List";
+import data from "../../../data/list";
 
 const mockedNavigate = jest.fn();
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import Header from "../../components/molecules/Header";
+import Header from "./Header";
 import { MemoryRouter } from "react-router";
 
 describe("<Header />", () => {
@@ -16,7 +16,9 @@ describe("<Header />", () => {
     expect(headerElement).toBeInTheDocument();
   });
 
-  test("Logout button should render if current page is servers list", () => {
+  test("Logout button should render if user is logged in", () => {
+    sessionStorage.setItem("__tok", "1111-2222-3333");
+
     render(
       <MemoryRouter>
         <Header />

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import _orderBy from "lodash.orderby";
-import Server from "../atoms/Server";
-import SortDDL from "../atoms/SortDDL";
-import Warning from "../atoms/Warning";
-import AnimateBlock from "../atoms/AnimateBlock";
+import Server from "../../atoms/Server/Server";
+import SortDDL from "../../atoms/SortDDL/SortDDL";
+import Warning from "../../atoms/Warning/Warning";
+import AnimateBlock from "../../atoms/AnimateBlock/AnimateBlock";
 
 const List = () => {
   const [servers, setServers] = useState([]);
@@ -14,47 +14,51 @@ const List = () => {
 
   const navigate = useNavigate();
   const token = sessionStorage.getItem("__tok");
+
   /**
    * If user isn't authenticated > redirect to login page
    * Otherwise load servers list
    */
-
-  const fetchServers = useCallback(async () => {
-    const url = "https://playground.nordsec.com/v1/servers";
-    const response = await fetch(`${url}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-    })
-      .catch(() => {
-        setWarningMessage("Something wrong happened!");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-
-    const json = await response.json();
-
-    if (response.status === 200) {
-      setWarningMessage("");
-      setServers(json);
-    } else {
-      setWarningMessage("Something wrong happened!");
-    }
-  }, []);
-
-  useEffect(async () => {
+  useEffect(() => {
     if (!token) {
       navigate("/login");
     } else {
-      await fetchServers();
+      (async () => {
+        const url = "https://playground.nordsec.com/v1/servers";
+        setIsLoading(true);
+
+        const response = await fetch(`${url}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        })
+          .catch(() => {
+            setWarningMessage("Something wrong happened!");
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+
+        const json = await response.json();
+
+        if (response.status === 200) {
+          setWarningMessage("");
+          setServers(json);
+        } else {
+          setWarningMessage("Something wrong happened!");
+        }
+      })();
     }
   }, []);
 
   const constructServers = () => {
     return servers.map((server, index) => {
+      /**
+       * Used index here as a key since API sometimes is returning
+       * duplicated values as name or distance
+       */
       return <Server server={server} key={index} />;
     });
   };

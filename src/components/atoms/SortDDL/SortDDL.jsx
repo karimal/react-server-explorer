@@ -6,7 +6,7 @@ const SortDDL = (props) => {
     <select
       value={props.value}
       onChange={props.onChange}
-      className="border-2 border-gray-200 py-2 px-4 rounded w-full sm:w-1/5"
+      className="border-2 border-gray-200 py-2 px-2 rounded w-full sm:w-1/5 text-sm"
       data-testid="sort-ddl"
     >
       <option value="">Sort</option>

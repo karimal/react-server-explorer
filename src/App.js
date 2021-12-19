@@ -2,9 +2,9 @@ import React, { StrictMode } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Header from "./components/molecules/Header";
-import List from "./components/organisms/List";
-import Login from "./components/organisms/Login";
+import Header from "./components/molecules/Header/Header";
+import List from "./components/organisms/List/List";
+import Login from "./components/organisms/Login/Login";
 import "./assets/styles/main.css";
 
 render(

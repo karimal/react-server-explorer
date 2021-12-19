@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../atoms/Input.jsx";
-import Submit from "../atoms/Submit";
-import Warning from "../atoms/Warning";
+import Input from "../../atoms/Input/Input.jsx";
+import Submit from "../../atoms/Submit/Submit";
+import Warning from "../../atoms/Warning/Warning";
 
 const Login = () => {
   const [username, setUsername] = useState("");

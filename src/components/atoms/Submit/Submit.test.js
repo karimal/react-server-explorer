@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import Submit from "../../components/atoms/Submit";
+import Submit from "./Submit";
 
 describe("<Submit />", () => {
   test("Submit renders with the right value", () => {
